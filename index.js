@@ -106,7 +106,7 @@ for(let eventName of fs.readdirSync("./events")) {
 //
 
 client.once("ready", async() => {
-	const rest = new Rest.REST({ version: "10" }).setToken(config.token);
+	const rest = new Rest.REST({ version: "10" }).setToken(process.env.token);
   try {
     await rest.put(DiscordApi.Routes.applicationCommands(client.user.id), {
       body: client.commands,  //
@@ -118,7 +118,7 @@ client.once("ready", async() => {
   }
 });
 
-client.login(config.token).then(() => {
+client.login(process.env.token).then(() => {
 	console.log(`[-] Discord API'ye istek gönderiliyor.`);
 	eval("console.clear()")
 }).catch(() => {
